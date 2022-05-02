@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/drone-runners/drone-runner-ssh/engine"
-	"github.com/drone-runners/drone-runner-ssh/engine/resource"
+	"github.com/oxystin/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine/resource"
 
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/runner-go/clone"
@@ -87,6 +87,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 			Username: c.Pipeline.Server.User.Value,
 			Password: c.Pipeline.Server.Password.Value,
 			SSHKey:   c.Pipeline.Server.SSHKey.Value,
+			SFTPDir:  c.Pipeline.Server.SFTPDir.Value,
 		},
 	}
 
@@ -113,14 +114,14 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 	}
 
 	// create the root directory
-	spec.Root = tempdir(os)
+	spec.Root, spec.Sftp = tempdir(os, spec.Server.SFTPDir)
 
 	// creates a home directory in the root.
 	// note: mkdirall fails on windows so we need to create all
 	// directories in the tree.
-	homedir := join(os, spec.Root, "home", "drone")
+	homedir := join(os, spec.Sftp, "home", "drone")
 	spec.Files = append(spec.Files, &engine.File{
-		Path:  join(os, spec.Root, "home"),
+		Path:  join(os, spec.Sftp, "home"),
 		Mode:  0700,
 		IsDir: true,
 	})
@@ -134,20 +135,21 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 	// note: mkdirall fails on windows so we need to create all
 	// directories in the tree.
 	sourcedir := join(os, spec.Root, "drone", "src")
+	sourcedirsftp := join(os, spec.Sftp, "drone", "src")
 	spec.Files = append(spec.Files, &engine.File{
-		Path:  join(os, spec.Root, "drone"),
+		Path:  join(os, spec.Sftp, "drone"),
 		Mode:  0700,
 		IsDir: true,
 	})
 	spec.Files = append(spec.Files, &engine.File{
-		Path:  sourcedir,
+		Path:  sourcedirsftp,
 		Mode:  0700,
 		IsDir: true,
 	})
 
 	// creates the opt directory to hold all scripts.
 	spec.Files = append(spec.Files, &engine.File{
-		Path:  join(os, spec.Root, "opt"),
+		Path:  join(os, spec.Sftp, "opt"),
 		Mode:  0700,
 		IsDir: true,
 	})
@@ -202,6 +204,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 	// create clone step, maybe
 	if c.Pipeline.Clone.Disable == false {
 		clonepath := join(os, spec.Root, "opt", getExt(os, "clone"))
+		clonepathsftp := join(os, spec.Sftp, "opt", getExt(os, "clone"))
 		clonefile := genScript(os,
 			clone.Commands(
 				clone.Args{
@@ -223,7 +226,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 			RunPolicy: engine.RunAlways,
 			Files: []*engine.File{
 				{
-					Path: clonepath,
+					Path: clonepathsftp,
 					Mode: 0700,
 					Data: []byte(clonefile),
 				},
@@ -237,6 +240,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 	for _, src := range c.Pipeline.Steps {
 		buildslug := slug.Make(src.Name)
 		buildpath := join(os, spec.Root, "opt", getExt(os, buildslug))
+		buildpathsftp := join(os, spec.Sftp, "opt", getExt(os, buildslug))
 		buildfile := genScript(os, src.Commands)
 
 		cmd, args := getCommand(os, buildpath)
@@ -257,7 +261,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 			RunPolicy:    engine.RunOnSuccess,
 			Files: []*engine.File{
 				{
-					Path: buildpath,
+					Path: buildpathsftp,
 					Mode: 0700,
 					Data: []byte(buildfile),
 				},

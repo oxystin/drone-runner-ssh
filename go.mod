@@ -1,4 +1,4 @@
-module github.com/drone-runners/drone-runner-ssh
+module github.com/oxystin/drone-runner-ssh
 
 go 1.12
 

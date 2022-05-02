@@ -5,8 +5,8 @@
 package main
 
 import (
-	"github.com/drone-runners/drone-runner-ssh/command"
 	_ "github.com/joho/godotenv/autoload"
+	"github.com/oxystin/drone-runner-ssh/command"
 )
 
 func main() {

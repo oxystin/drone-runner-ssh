@@ -10,8 +10,8 @@ import (
 	"context"
 	"sync"
 
-	"github.com/drone-runners/drone-runner-ssh/engine"
-	"github.com/drone-runners/drone-runner-ssh/engine/replacer"
+	"github.com/oxystin/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine/replacer"
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/runner-go/environ"
 	"github.com/drone/runner-go/logger"

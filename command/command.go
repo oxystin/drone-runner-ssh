@@ -8,7 +8,7 @@ import (
 	"context"
 	"os"
 
-	"github.com/drone-runners/drone-runner-ssh/command/daemon"
+	"github.com/oxystin/drone-runner-ssh/command/daemon"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 )
