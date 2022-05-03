@@ -35,13 +35,13 @@ services:
 
 Remember to replace the environment variables below with your Drone server details:
 
-- **DRONE_RPC_HOST**
+- **DRONE_RPC_HOST**<br/>
 Provides the hostname (and optional port) of your Drone server. The runner connects to the server at the host address to receive pipelines for execution.
 
-- **DRONE_RPC_PROTO**
+- **DRONE_RPC_PROTO**<br/>
 Provides the protocol used to connect to your Drone server. The value must be either http or https.
 
-- **DRONE_RPC_SECRET**
+- **DRONE_RPC_SECRET**<br/>
 Provides the shared secret used to authenticate with your Drone server. This must match the secret defined in your Drone server configuration.
 
 ## Usage
@@ -66,8 +66,8 @@ steps:
   commands:
   - echo hello world
 ```
-- Optional parameters:
-`sftp_dir` - SFTP user root directory
+- Optional parameters:<br/>
+`sftp_dir` - SFTP user root directory<br/>
 `current_dir` - Working directory (by default **«/tmp»**, for windows **«C:\Windows\Temp»**)
 
 ## Other
