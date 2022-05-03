@@ -88,6 +88,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 			Password: c.Pipeline.Server.Password.Value,
 			SSHKey:   c.Pipeline.Server.SSHKey.Value,
 			SFTPDir:  c.Pipeline.Server.SFTPDir.Value,
+			Dir:      c.Pipeline.Server.Dir.Value,
 		},
 	}
 
