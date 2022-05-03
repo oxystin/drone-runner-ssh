@@ -14,21 +14,27 @@ import (
 
 // helper function returns the base temporary directory based
 // on the target platform.
-func tempdir(os string, root string) (string, string) {
-	dir := fmt.Sprintf("drone-%s", random())
+func tempdir(os string, root string, dir string) (string, string) {
+	drone := fmt.Sprintf("drone-%s", random())
+	dir_linux := "tmp"
+	dir_windows := "Temp"
+	if len(dir) > 0 {
+		dir_linux = dir
+		dir_windows = dir
+	}
 	switch os {
 	case "windows":
 		if len(root) > 0 {
-			return join(os, root, "\\Temp", dir), join(os, "\\Temp", dir)
+			return join(os, root, dir_windows, drone), join(os, "", dir_windows, drone)
 		} else {
-			path := join(os, "C:\\Windows\\Temp", dir)
+			path := join(os, "C:", "", "Windows", "", dir_windows, drone)
 			return path, path
 		}
 	default:
 		if len(root) > 0 {
-			return join(os, root, "tmp", dir), join(os, "/tmp", dir)
+			return join(os, root, dir_linux, drone), join(os, "", dir_linux, drone)
 		} else {
-			path := join(os, "/tmp", dir)
+			path := join(os, "", dir_linux, drone)
 			return path, path
 		}
 	}

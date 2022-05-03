@@ -44,6 +44,7 @@ type (
 		Password manifest.Variable `json:"password,omitempty"`
 		SSHKey   manifest.Variable `json:"ssh_key,omitempty" yaml:"ssh_key"`
 		SFTPDir  manifest.Variable `json:"sftp_dir,omitempty" yaml:"sftp_dir"`
+		Dir      manifest.Variable `json:"current_dir,omitempty" yaml:"current_dir"`
 	}
 
 	// Step defines a Pipeline step.

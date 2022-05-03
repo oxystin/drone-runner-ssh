@@ -88,6 +88,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 			Password: c.Pipeline.Server.Password.Value,
 			SSHKey:   c.Pipeline.Server.SSHKey.Value,
 			SFTPDir:  c.Pipeline.Server.SFTPDir.Value,
+			Dir:      c.Pipeline.Server.Dir.Value,
 		},
 	}
 
@@ -114,7 +115,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 	}
 
 	// create the root directory
-	spec.Root, spec.Sftp = tempdir(os, spec.Server.SFTPDir)
+	spec.Root, spec.Sftp = tempdir(os, spec.Server.SFTPDir, spec.Server.Dir)
 
 	// creates a home directory in the root.
 	// note: mkdirall fails on windows so we need to create all
