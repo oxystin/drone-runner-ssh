@@ -114,7 +114,7 @@ func (c *Compiler) Compile(ctx context.Context) *engine.Spec {
 	}
 
 	// create the root directory
-	spec.Root, spec.Sftp = tempdir(os, spec.Server.SFTPDir)
+	spec.Root, spec.Sftp = tempdir(os, spec.Server.SFTPDir, spec.Server.Dir)
 
 	// creates a home directory in the root.
 	// note: mkdirall fails on windows so we need to create all

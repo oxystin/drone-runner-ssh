@@ -24,6 +24,7 @@ type (
 		Password string `json:"password,omitempty"`
 		SSHKey   string `json:"ssh_key,omitempty"`
 		SFTPDir  string `json:"sftp_dir,omitempty"`
+		Dir      string `json:"current_dir,omitempty"`
 	}
 
 	// Step defines a pipeline step.
