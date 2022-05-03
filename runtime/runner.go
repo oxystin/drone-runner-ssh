@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/drone-runners/drone-runner-ssh/engine"
-	"github.com/drone-runners/drone-runner-ssh/engine/compiler"
-	"github.com/drone-runners/drone-runner-ssh/engine/resource"
+	"github.com/oxystin/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine/compiler"
+	"github.com/oxystin/drone-runner-ssh/engine/resource"
 
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/envsubst"

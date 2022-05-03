@@ -12,6 +12,7 @@ type (
 		Server   Server   `json:"server,omitempty"`
 		Platform Platform `json:"platform,omitempty"`
 		Root     string   `json:"root,omitempty"`
+		Sftp     string   `json:"sftp,omitempty"`
 		Files    []*File  `json:"files,omitempty"`
 		Steps    []*Step  `json:"steps,omitempty"`
 	}
@@ -22,6 +23,7 @@ type (
 		Username string `json:"username,omitempty"`
 		Password string `json:"password,omitempty"`
 		SSHKey   string `json:"ssh_key,omitempty"`
+		SFTPDir  string `json:"sftp_dir,omitempty"`
 	}
 
 	// Step defines a pipeline step.

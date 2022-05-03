@@ -46,11 +46,11 @@ func (e *engine) Setup(ctx context.Context, spec *Spec) error {
 	// the pipeline workspace is created before pipeline
 	// execution begins. All files and folders created during
 	// pipeline execution are isolated to this workspace.
-	err = mkdir(clientftp, spec.Root, 0777)
+	err = mkdir(clientftp, spec.Sftp, 0777)
 	if err != nil {
 		logger.FromContext(ctx).
 			WithError(err).
-			WithField("path", spec.Root).
+			WithField("path", spec.Sftp).
 			Error("cannot create workspace directory")
 		return err
 	}
@@ -104,23 +104,9 @@ func (e *engine) Destroy(ctx context.Context, spec *Spec) error {
 	}
 	defer client.Close()
 
-	ftp, err := sftp.NewClient(client)
-	if err != nil {
-		return err
-	}
-	defer ftp.Close()
-	if err = ftp.RemoveDirectory(spec.Root); err == nil {
-		return nil
-	}
-
 	// ideally we would remove the directory using sftp, however,
 	// it consistnetly errors on linux and windows. We therefore
 	// fallback to executing ssh commands to remove the directory
-
-	logger.FromContext(ctx).
-		WithError(err).
-		WithField("path", spec.Root).
-		Trace("cannot remove workspace using sftp")
 
 	session, err := client.NewSession()
 	if err != nil {

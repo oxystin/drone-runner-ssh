@@ -4,5 +4,5 @@
 
 package mock
 
-//go:generate mockgen -package=mock -destination=mock_engine_gen.go github.com/drone-runners/drone-runner-ssh/engine Engine
-//go:generate mockgen -package=mock -destination=mock_execer_gen.go github.com/drone-runners/drone-runner-ssh/runtime Execer
+//go:generate mockgen -package=mock -destination=mock_engine_gen.go github.com/oxystin/drone-runner-ssh/engine Engine
+//go:generate mockgen -package=mock -destination=mock_execer_gen.go github.com/oxystin/drone-runner-ssh/runtime Execer

@@ -11,7 +11,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/drone-runners/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine"
 )
 
 const maskedf = "[secret:%s]"

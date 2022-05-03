@@ -13,11 +13,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/drone-runners/drone-runner-ssh/command/internal"
-	"github.com/drone-runners/drone-runner-ssh/engine"
-	"github.com/drone-runners/drone-runner-ssh/engine/compiler"
-	"github.com/drone-runners/drone-runner-ssh/engine/resource"
-	"github.com/drone-runners/drone-runner-ssh/runtime"
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/envsubst"
 	"github.com/drone/runner-go/environ"
@@ -27,6 +22,11 @@ import (
 	"github.com/drone/runner-go/pipeline/console"
 	"github.com/drone/runner-go/secret"
 	"github.com/drone/signal"
+	"github.com/oxystin/drone-runner-ssh/command/internal"
+	"github.com/oxystin/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine/compiler"
+	"github.com/oxystin/drone-runner-ssh/engine/resource"
+	"github.com/oxystin/drone-runner-ssh/runtime"
 
 	"github.com/mattn/go-isatty"
 	"github.com/sirupsen/logrus"

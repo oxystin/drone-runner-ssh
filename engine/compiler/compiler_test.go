@@ -2,6 +2,7 @@
 // Use of this source code is governed by the Polyform License
 // that can be found in the LICENSE file.
 
+//go:build !windows
 // +build !windows
 
 package compiler
@@ -14,11 +15,11 @@ import (
 	"testing"
 
 	"github.com/dchest/uniuri"
-	"github.com/drone-runners/drone-runner-ssh/engine"
-	"github.com/drone-runners/drone-runner-ssh/engine/resource"
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/runner-go/manifest"
 	"github.com/drone/runner-go/secret"
+	"github.com/oxystin/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine/resource"
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"

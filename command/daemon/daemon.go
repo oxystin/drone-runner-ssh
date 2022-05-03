@@ -8,10 +8,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/drone-runners/drone-runner-ssh/engine"
-	"github.com/drone-runners/drone-runner-ssh/engine/resource"
-	"github.com/drone-runners/drone-runner-ssh/internal/match"
-	"github.com/drone-runners/drone-runner-ssh/runtime"
+	"github.com/oxystin/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine/resource"
+	"github.com/oxystin/drone-runner-ssh/internal/match"
+	"github.com/oxystin/drone-runner-ssh/runtime"
 
 	"github.com/drone/runner-go/client"
 	"github.com/drone/runner-go/handler/router"

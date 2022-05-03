@@ -11,13 +11,13 @@ import (
 	"os"
 	"strings"
 
-	"github.com/drone-runners/drone-runner-ssh/command/internal"
-	"github.com/drone-runners/drone-runner-ssh/engine/compiler"
-	"github.com/drone-runners/drone-runner-ssh/engine/resource"
 	"github.com/drone/envsubst"
 	"github.com/drone/runner-go/environ"
 	"github.com/drone/runner-go/manifest"
 	"github.com/drone/runner-go/secret"
+	"github.com/oxystin/drone-runner-ssh/command/internal"
+	"github.com/oxystin/drone-runner-ssh/engine/compiler"
+	"github.com/oxystin/drone-runner-ssh/engine/resource"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 )

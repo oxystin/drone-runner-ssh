@@ -10,38 +10,7 @@ import (
 
 	"github.com/drone/runner-go/shell/bash"
 	"github.com/drone/runner-go/shell/powershell"
-
-	"github.com/dchest/uniuri"
 )
-
-func Test_tempdir(t *testing.T) {
-	// replace the default random function with one that
-	// is deterministic, for testing purposes.
-	random = notRandom
-
-	// restore the default random function and the previously
-	// specified temporary directory
-	defer func() {
-		random = uniuri.New
-	}()
-
-	tests := []struct {
-		os   string
-		path string
-	}{
-		{os: "windows", path: "C:\\Windows\\Temp\\drone-random"},
-		{os: "linux", path: "/tmp/drone-random"},
-		{os: "openbsd", path: "/tmp/drone-random"},
-		{os: "netbsd", path: "/tmp/drone-random"},
-		{os: "freebsd", path: "/tmp/drone-random"},
-	}
-
-	for _, test := range tests {
-		if got, want := tempdir(test.os), test.path; got != want {
-			t.Errorf("Want tempdir %s, got %s", want, got)
-		}
-	}
-}
 
 func Test_join(t *testing.T) {
 	tests := []struct {

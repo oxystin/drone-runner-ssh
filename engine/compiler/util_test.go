@@ -7,9 +7,9 @@ package compiler
 import (
 	"testing"
 
-	"github.com/drone-runners/drone-runner-ssh/engine"
-	"github.com/drone-runners/drone-runner-ssh/engine/resource"
 	"github.com/drone/runner-go/manifest"
+	"github.com/oxystin/drone-runner-ssh/engine"
+	"github.com/oxystin/drone-runner-ssh/engine/resource"
 
 	"github.com/google/go-cmp/cmp"
 )
