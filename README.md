@@ -11,7 +11,7 @@ version: "3.8"
 services:
   runner-ssh:
     container_name: runner-ssh
-    image: oxystin/drone-runner-ssh:linux-amd64
+    image: oxystin/drone-runner-ssh
     restart: unless-stopped
     ports:
       - 3002:3000
