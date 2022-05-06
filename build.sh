@@ -7,7 +7,7 @@ export DOCKER_BUILDKIT=1
 export DOCKER_CLI_EXPERIMENTAL=enabled
 
 # COMPILE
-docker run --rm -it -v ${PWD}:/go golang:1.18.1 compiile.sh
+docker run --rm -it -v ${PWD}:/go golang:1.18.1 ./compiile.sh
 
 # QEMU CONFIG
 # https://github.com/multiarch/qemu-user-static
