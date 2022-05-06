@@ -2,6 +2,29 @@
 
 The ssh runner executes pipelines on a remote server using the ssh protocol. This runner is intended for workloads that are not suitable for running inside containers. Posix and Windows workloads supported. Drone server 1.2.1 or higher is required.
 
+## Building
+
+1. Install go 1.12 or later
+
+2. Test
+```sh
+go test ./...
+```
+
+3. Build executables
+```sh
+sh compiile.sh
+```
+
+4. Build images
+```sh
+export DOCKER_BUILDKIT=1
+
+docker build --platform linux/amd64 --build-arg ARCH=amd64 --tag drone-runner-ssh:linux-amd64 .
+docker build --platform=linux/arm/v7 --build-arg ARCH=arm64 --tag drone-runner-ssh:linux-arm64 .
+docker build --platform linux/arm64/v8 --build-arg ARCH=arm --tag drone-runner-ssh:linux-arm .
+```
+
 ## Installation
 
 The below command creates a container and starts the ssh runner:

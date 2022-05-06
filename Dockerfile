@@ -8,5 +8,6 @@ ENV GODEBUG netdns=go
 
 COPY --from=alpine /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-ADD release/linux/arm/drone-runner-ssh /bin/
+ARG ARCH=amd64
+ADD release/linux/${ARCH}/drone-runner-ssh /bin/
 ENTRYPOINT ["/bin/drone-runner-ssh"]
